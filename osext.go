@@ -21,7 +21,13 @@ func Executable() (string, error) {
 	return cx, ce
 }
 
-// Returns same path as Executable, returns just the folder
+// ExecutableErrLess returns same as Executable, but ignoring errors.
+func ExecutableErrLess() string {
+	p, _ := Executable()
+	return p
+}
+
+// ExecutableFolder returns same path as Executable, returns just the folder
 // path. Excludes the executable name and any trailing slash.
 func ExecutableFolder() (string, error) {
 	p, err := Executable()
@@ -30,4 +36,10 @@ func ExecutableFolder() (string, error) {
 	}
 
 	return filepath.Dir(p), nil
+}
+
+// ExecutableFolderErrLess returns same as ExecutableFolder, but ignoring errors.
+func ExecutableFolderErrLess() string {
+	p, _ := ExecutableFolder()
+	return p
 }
